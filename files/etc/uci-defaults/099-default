@@ -1,0 +1,35 @@
+uci del network.globals.ula_prefix
+uci set network.globals.packet_steering='1'
+uci set network.wan6.reqaddress='force'
+uci set network.wan6.reqprefix='64'
+uci set network.wan6.extendprefix='1'
+uci set network.wan6.norelease='1'
+uci set network.wan6.ip6assign='64'
+uci commit network
+
+uci del dhcp.lan.ra_slaac
+uci del dhcp.lan.ra_flags
+uci add_list dhcp.lan.ra_flags='other-config'
+uci set dhcp.lan.ra='hybrid'
+uci set dhcp.lan.dhcpv6='hybrid'
+uci set dhcp.lan.ndp='hybrid'
+uci commit dhcp
+
+uci add firewall redirect # =cfg113837
+uci set firewall.@redirect[-1].dest='lan'
+uci set firewall.@redirect[-1].target='DNAT'
+uci set firewall.@redirect[-1].name='TLS'
+uci set firewall.@redirect[-1].src='wan'
+uci set firewall.@redirect[-1].src_dport='8443'
+uci set firewall.@redirect[-1].dest_ip='192.168.31.159'
+uci set firewall.@redirect[-1].dest_port='8443'
+
+uci add firewall redirect # =cfg123837
+uci set firewall.@redirect[-1].dest='lan'
+uci set firewall.@redirect[-1].target='DNAT'
+uci set firewall.@redirect[-1].name='Sunshine'
+uci set firewall.@redirect[-1].src='wan'
+uci set firewall.@redirect[-1].src_dport='47984-48010'
+uci set firewall.@redirect[-1].dest_ip='192.168.31.159'
+uci set firewall.@redirect[-1].dest_port='47984-48010'
+uci commit firewall
