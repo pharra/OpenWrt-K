@@ -13,6 +13,12 @@ uci add_list dhcp.lan.ra_flags='other-config'
 uci set dhcp.lan.ra='hybrid'
 uci set dhcp.lan.dhcpv6='hybrid'
 uci set dhcp.lan.ndp='hybrid'
+
+uci add dhcp host # =cfg06fe63
+uci set dhcp.@host[-1].name='homelab'
+uci add_list dhcp.@host[-1].mac='c2:4f:ab:0a:95:4f'
+uci set dhcp.@host[-1].ip='192.168.31.159'
+uci set dhcp.@host[-1].leasetime='12h'
 uci commit dhcp
 
 uci add firewall redirect # =cfg113837
