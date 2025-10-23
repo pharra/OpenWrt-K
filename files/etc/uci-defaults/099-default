@@ -20,6 +20,7 @@ uci set dhcp.@host[-1].name='homelab'
 uci add_list dhcp.@host[-1].mac='c2:4f:ab:0a:95:4f'
 uci set dhcp.@host[-1].ip='192.168.31.159'
 uci set dhcp.@host[-1].leasetime='12h'
+uci set dhcp.cfg01411c.rebind_protection='0'
 uci commit dhcp
 
 uci add firewall redirect # =cfg123837
@@ -30,6 +31,13 @@ uci set firewall.@redirect[-1].src='wan'
 uci set firewall.@redirect[-1].src_dport='47984-48010'
 uci set firewall.@redirect[-1].dest_ip='192.168.31.159'
 uci set firewall.@redirect[-1].dest_port='47984-48010'
+
+uci add firewall rule # =cfg1392bd
+uci set firewall.@rule[-1].src='*'
+uci set firewall.@rule[-1].name='Metacubexd'
+uci set firewall.@rule[-1].dest_port='9090'
+uci set firewall.@rule[-1].target='ACCEPT'
+
 uci commit firewall
 
 uci set socat.d7cacd358c3d430b8f005e5fc8413466=config
@@ -44,19 +52,6 @@ uci set socat.d7cacd358c3d430b8f005e5fc8413466.reuseaddr='1'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_proto='tcp4'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_ip='192.168.31.159'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_port='8443'
-
-uci set socat.873cffd766f240ab8ebbe8901430f549=config
-uci set socat.873cffd766f240ab8ebbe8901430f549.firewall_accept='1'
-uci set socat.873cffd766f240ab8ebbe8901430f549.enable='1'
-uci set socat.873cffd766f240ab8ebbe8901430f549.remarks='Metacubexd'
-uci set socat.873cffd766f240ab8ebbe8901430f549.protocol='port_forwards'
-uci set socat.873cffd766f240ab8ebbe8901430f549.family='4'
-uci set socat.873cffd766f240ab8ebbe8901430f549.proto='tcp'
-uci set socat.873cffd766f240ab8ebbe8901430f549.listen_port='9090'
-uci set socat.873cffd766f240ab8ebbe8901430f549.reuseaddr='1'
-uci set socat.873cffd766f240ab8ebbe8901430f549.dest_proto='tcp4'
-uci set socat.873cffd766f240ab8ebbe8901430f549.dest_ip='192.168.31.159'
-uci set socat.873cffd766f240ab8ebbe8901430f549.dest_port='9090'
 
 uci set socat.873cffd766f240ab8ebbe8901430f548=config
 uci set socat.873cffd766f240ab8ebbe8901430f548.firewall_accept='1'
