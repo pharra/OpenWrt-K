@@ -22,15 +22,6 @@ uci set dhcp.@host[-1].ip='192.168.31.159'
 uci set dhcp.@host[-1].leasetime='12h'
 uci commit dhcp
 
-uci add firewall redirect # =cfg113837
-uci set firewall.@redirect[-1].dest='lan'
-uci set firewall.@redirect[-1].target='DNAT'
-uci set firewall.@redirect[-1].name='TLS'
-uci set firewall.@redirect[-1].src='wan'
-uci set firewall.@redirect[-1].src_dport='8443'
-uci set firewall.@redirect[-1].dest_ip='192.168.31.159'
-uci set firewall.@redirect[-1].dest_port='8443'
-
 uci add firewall redirect # =cfg123837
 uci set firewall.@redirect[-1].dest='lan'
 uci set firewall.@redirect[-1].target='DNAT'
@@ -41,8 +32,24 @@ uci set firewall.@redirect[-1].dest_ip='192.168.31.159'
 uci set firewall.@redirect[-1].dest_port='47984-48010'
 uci commit firewall
 
+uci set socat.d7cacd358c3d430b8f005e5fc8413466=config
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.enable='0'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.firewall_accept='1'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.enable='1'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.remarks='TLS'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.protocol='port_forwards'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.family='4'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.proto='tcp'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.listen_port='8443'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.reuseaddr='1'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_proto='tcp4'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_ip='192.168.31.159'
+uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_port='8443'
+uci commit socat
+
 /etc/init.d/network restart
 /etc/init.d/firewall restart
+/etc/init.d/socat restart
 
 uci add fstab mount # =cfg064d78
 uci set fstab.@mount[-1].enabled='1'
