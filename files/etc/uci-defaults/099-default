@@ -33,7 +33,6 @@ uci set firewall.@redirect[-1].dest_port='47984-48010'
 uci commit firewall
 
 uci set socat.d7cacd358c3d430b8f005e5fc8413466=config
-uci set socat.d7cacd358c3d430b8f005e5fc8413466.enable='0'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.firewall_accept='1'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.enable='1'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.remarks='TLS'
@@ -45,6 +44,46 @@ uci set socat.d7cacd358c3d430b8f005e5fc8413466.reuseaddr='1'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_proto='tcp4'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_ip='192.168.31.159'
 uci set socat.d7cacd358c3d430b8f005e5fc8413466.dest_port='8443'
+
+uci set socat.873cffd766f240ab8ebbe8901430f549=config
+uci set socat.873cffd766f240ab8ebbe8901430f549.firewall_accept='1'
+uci set socat.873cffd766f240ab8ebbe8901430f549.enable='1'
+uci set socat.873cffd766f240ab8ebbe8901430f549.remarks='Metacubexd'
+uci set socat.873cffd766f240ab8ebbe8901430f549.protocol='port_forwards'
+uci set socat.873cffd766f240ab8ebbe8901430f549.family='4'
+uci set socat.873cffd766f240ab8ebbe8901430f549.proto='tcp'
+uci set socat.873cffd766f240ab8ebbe8901430f549.listen_port='9090'
+uci set socat.873cffd766f240ab8ebbe8901430f549.reuseaddr='1'
+uci set socat.873cffd766f240ab8ebbe8901430f549.dest_proto='tcp4'
+uci set socat.873cffd766f240ab8ebbe8901430f549.dest_ip='192.168.31.159'
+uci set socat.873cffd766f240ab8ebbe8901430f549.dest_port='9090'
+
+uci set socat.873cffd766f240ab8ebbe8901430f548=config
+uci set socat.873cffd766f240ab8ebbe8901430f548.firewall_accept='1'
+uci set socat.873cffd766f240ab8ebbe8901430f548.enable='1'
+uci set socat.873cffd766f240ab8ebbe8901430f548.remarks='Sehua'
+uci set socat.873cffd766f240ab8ebbe8901430f548.protocol='port_forwards'
+uci set socat.873cffd766f240ab8ebbe8901430f548.family='4'
+uci set socat.873cffd766f240ab8ebbe8901430f548.proto='tcp'
+uci set socat.873cffd766f240ab8ebbe8901430f548.listen_port='8000'
+uci set socat.873cffd766f240ab8ebbe8901430f548.reuseaddr='1'
+uci set socat.873cffd766f240ab8ebbe8901430f548.dest_proto='tcp4'
+uci set socat.873cffd766f240ab8ebbe8901430f548.dest_ip='192.168.31.2'
+uci set socat.873cffd766f240ab8ebbe8901430f548.dest_port='8000'
+
+uci set socat.873cffd766f240ab8ebbe8901430f547=config
+uci set socat.873cffd766f240ab8ebbe8901430f547.firewall_accept='1'
+uci set socat.873cffd766f240ab8ebbe8901430f547.enable='1'
+uci set socat.873cffd766f240ab8ebbe8901430f547.remarks='Mybili'
+uci set socat.873cffd766f240ab8ebbe8901430f547.protocol='port_forwards'
+uci set socat.873cffd766f240ab8ebbe8901430f547.family='4'
+uci set socat.873cffd766f240ab8ebbe8901430f547.proto='tcp'
+uci set socat.873cffd766f240ab8ebbe8901430f547.listen_port='5151'
+uci set socat.873cffd766f240ab8ebbe8901430f547.reuseaddr='1'
+uci set socat.873cffd766f240ab8ebbe8901430f547.dest_proto='tcp4'
+uci set socat.873cffd766f240ab8ebbe8901430f547.dest_ip='192.168.31.2'
+uci set socat.873cffd766f240ab8ebbe8901430f547.dest_port='5151'
+
 uci commit socat
 
 /etc/init.d/network restart
