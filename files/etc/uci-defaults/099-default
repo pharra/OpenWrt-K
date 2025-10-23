@@ -43,3 +43,12 @@ uci commit firewall
 
 /etc/init.d/network restart
 /etc/init.d/firewall restart
+
+uci add fstab mount # =cfg064d78
+uci set fstab.@mount[-1].enabled='1'
+uci set fstab.@mount[-1].label='extroot'
+uci set fstab.@mount[-1].target='/overlay'
+uci set fstab.@mount[-1].fstype='btrfs'
+uci commit fstab
+
+reboot

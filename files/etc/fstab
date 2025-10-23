@@ -1,2 +1,0 @@
-# <file system> <mount point> <type> <options> <dump> <pass>
-overlay /overlay virtiofs defaults 0 0
